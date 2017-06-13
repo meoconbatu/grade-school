@@ -25,9 +25,9 @@ func (s *School) Add(student string, grade int) {
 	} else {
 		for i := 0; i < len(*s); i++ {
 			if (*s)[i].grade == grade {
-				// ss := append((*s)[i].students, student)
-				// sort.Strings(ss)
-				(*s)[i].students = append((*s)[i].students, student)
+				ss := append((*s)[i].students, student)
+				sort.Strings(ss)
+				(*s)[i].students = ss
 			}
 		}
 	}
@@ -43,9 +43,6 @@ func (s *School) Grade(grade int) []string {
 }
 func (s *School) Enrollment() []Grade {
 	sort.Sort(*s)
-	for i := 0; i < len(*s); i++ {
-		sort.Strings((*s)[i].students)
-	}
 	return *s
 }
 func (s School) Len() int {
